@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h1>Welcome, {{ user.username }}</h1>
+    
+    <div class="grid" style="margin-bottom: 2rem;">
+        <div class="card stat-card">
+            <h3 style="margin: 0; color: var(--text-muted); font-size: 1rem;">Total Expenses</h3>
+            <div class="stat-value">{{ total_expenses }} MAD</div>
+        </div>
+    </div>
+
+    <div class="flex justify-between items-center" style="margin-bottom: 1rem;">
+        <h2>Recent Expenses</h2>
+        <a href="/add-depense" class="btn">Add New Expense</a>
+    </div>
+
+    {% if recent_expenses %}
+    <div style="overflow-x: auto;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Amount (MAD)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for expense in recent_expenses %}
+                <tr>
+                    <td>{{ expense.created_at.strftime('%Y-%m-%d') }}</td>
+                    <td>{{ expense.category }}</td>
+                    <td><b>{{ expense.amount }}</b></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p>You haven't added any expenses yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h1>Public Prices</h1>
+    <p>View price tracking across Morocco.</p>
+    
+    <form class="search-bar" method="get" action="/">
+        <div class="form-group">
+            <label for="product">Product</label>
+            <input type="text" id="product" name="product" value="{{ request.query_params.get('product', '') }}" placeholder="Search by product...">
+        </div>
+        <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" value="{{ request.query_params.get('city', '') }}" placeholder="Search by city...">
+        </div>
+        <button type="submit" class="btn">Filter</button>
+    </form>
+
+    <div class="grid">
+        {% for price in prices %}
+        <div class="card" style="margin-bottom: 0;">
+            <h3>{{ price.product }}</h3>
+            <p class="stat-value" style="font-size: 1.5rem; margin: 0;">{{ price.price }} MAD</p>
+            <p style="margin: 0.5rem 0 0 0;">📍 {{ price.city }}</p>
+            <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0;">Added: {{ price.created_at.strftime('%Y-%m-%d') }}</p>
+        </div>
+        {% else %}
+        <p>No prices found.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

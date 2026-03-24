@@ -1,0 +1,50 @@
+﻿web-1  |     await self.app(scope, receive, send)
+web-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 134, in app
+web-1  |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+web-1  |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+web-1  |     raise exc
+web-1  |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+web-1  |     await app(scope, receive, sender)
+web-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 120, in app
+web-1  |     response = await f(request)
+web-1  |                ^^^^^^^^^^^^^^^^
+web-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 674, in app
+web-1  |     raw_response = await run_endpoint_function(
+web-1  |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 330, in run_endpoint_function
+web-1  |     return await run_in_threadpool(dependant.call, **values)
+web-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web-1  |   File "/usr/local/lib/python3.11/site-packages/starlette/concurrency.py", line 32, in run_in_threadpool
+web-1  |     return await anyio.to_thread.run_sync(func)
+web-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web-1  |   File "/usr/local/lib/python3.11/site-packages/anyio/to_thread.py", line 63, in run_sync
+web-1  |     return await get_async_backend().run_sync_in_worker_thread(
+web-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web-1  |   File "/usr/local/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 2518, in run_sync_in_worker_thread
+web-1  |     return await future
+web-1  |            ^^^^^^^^^^^^
+web-1  |   File "/usr/local/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 1002, in run
+web-1  |     result = context.run(func, *args)
+web-1  |              ^^^^^^^^^^^^^^^^^^^^^^^^
+web-1  |   File "/app/main.py", line 33, in home
+web-1  |     return templates.TemplateResponse("home.html", {"request": request, "prices": prices, "user": user})
+web-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web-1  |   File "/usr/local/lib/python3.11/site-packages/starlette/templating.py", line 148, in TemplateResponse
+web-1  |     template = self.get_template(name)
+web-1  |                ^^^^^^^^^^^^^^^^^^^^^^^
+web-1  |   File "/usr/local/lib/python3.11/site-packages/starlette/templating.py", line 115, in get_template
+web-1  |     return self.env.get_template(name)
+web-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web-1  |   File "/usr/local/lib/python3.11/site-packages/jinja2/environment.py", line 1016, in get_template
+web-1  |     return self._load_template(name, globals)
+web-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web-1  |   File "/usr/local/lib/python3.11/site-packages/jinja2/environment.py", line 964, in _load_template
+web-1  |     template = self.cache.get(cache_key)
+web-1  |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+web-1  |   File "/usr/local/lib/python3.11/site-packages/jinja2/utils.py", line 477, in get
+web-1  |     return self[key]
+web-1  |            ~~~~^^^^^
+web-1  |   File "/usr/local/lib/python3.11/site-packages/jinja2/utils.py", line 515, in __getitem__
+web-1  |     rv = self._mapping[key]
+web-1  |          ~~~~~~~~~~~~~^^^^^
+web-1  | TypeError: unhashable type: 'dict'
